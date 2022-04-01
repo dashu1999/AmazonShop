@@ -108,3 +108,6 @@ img.productimg{
   color:#f0c040;
   margin: 00.1rem;
 }
+.rating span:last-child{
+  color: black;
+}
