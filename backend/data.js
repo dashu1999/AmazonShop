@@ -18,7 +18,6 @@ const data = {
     ],
     products: [
         {
-            _id: '1',
             name: 'T-Shirt',
             category: 'Shirt',
             image: '/images/product1.jpeg',
@@ -30,7 +29,6 @@ const data = {
             description: 'high qulity',
         },
         {
-            _id: '2',
             name: 'Pants',
             category: 'Men',
             image: '/images/product2.jpeg',
@@ -42,7 +40,6 @@ const data = {
             description: 'high qulity',
         },
         {
-            _id: '3',
             name: 'Shirt',
             category: 'Shirt',
             image: '/images/product3.jpg',
@@ -54,7 +51,6 @@ const data = {
             description: 'high normal qulity',
         },
         {
-            _id: '4',
             name: 'T-Shirt',
             category: 'Shirt',
             image: '/images/product4.jpg',
@@ -66,7 +62,6 @@ const data = {
             description: 'nor high qulity',
         },
         {
-            _id: '5',
             name: 'Chaddi',
             category: 'Men',
             image: '/images/product5.jpeg',
