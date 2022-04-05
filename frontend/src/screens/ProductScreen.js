@@ -21,7 +21,7 @@ export default function ProductScreen(props) {
         dispatch(detailsProduct(productId));
     }, [dispatch, productId]);
 
-    const navigate=useNavigate();
+    const navigate = useNavigate();
     const addToCartHandler = () => {
         navigate(`/cart/${productId}?qty=${qty}`);
     };
