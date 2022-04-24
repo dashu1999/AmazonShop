@@ -20,16 +20,17 @@ export const isAuth = (req, res, next) => {
         const token = authorization.slice(7, authorization.length);
         jwt.verify(
             token,
-            process.env.JWT_SECRET || "idashubhai", (err, decode) => {
+            process.env.JWT_SECRET || 'somethingsecret',
+            (err, decode) => {
                 if (err) {
-                    res.status(401).send({ message: "Invaild Token" });
+                    res.status(401).send({ message: 'Invalid Token' });
                 } else {
                     req.user = decode;
                     next();
                 }
-            },
+            }
         );
     } else {
-        res.status(401).send({ message: "No Token" });
+        res.status(401).send({ message: 'No Token' });
     }
 };
