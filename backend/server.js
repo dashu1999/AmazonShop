@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 // mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/AmazonShop');
 
 const URI = "mongodb://127.0.0.1:27017/AmazonShop"
-// const URI = "mongodb+srv://admin:admin@blogapp.tcbvw.mongodb.net/AmazonShop"
+
 const connectDB = async () => {
     try {
         const connection = await mongoose.connect(
