@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom';
-import { detailsProduct } from '../actions/productActions';
+import { detailsProduct, updateProduct } from '../actions/productActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import { PRODUCT_UPDATE_RESET } from '../constants/productConstants';
 
 export default function ProductEditScreen(props) {
     const navigate = useNavigate();
@@ -19,9 +20,16 @@ export default function ProductEditScreen(props) {
 
     const productDetails = useSelector((state) => state.productDetails);
     const { loading, error, product } = productDetails;
+    const productUpdate = useSelector((state) => state.productUpdate);
+    const { loading: loadingUpdate, error: errorUpdate, success: successUpdate } = productUpdate;
     const dispatch = useDispatch();
     useEffect(() => {
-        if (!product || (product._id !== productId)) {
+        if (successUpdate) {
+
+            navigate('/productlist');
+        }
+        if (!product || (product._id !== productId || successUpdate)) {
+            dispatch({ type: PRODUCT_UPDATE_RESET });
             dispatch(detailsProduct(productId));
         } else {
             setName(product.name);
@@ -32,17 +40,19 @@ export default function ProductEditScreen(props) {
             setBrand(product.brand);
             setDescription(product.description);
         }
-    }, [product, dispatch, productId]);
+    }, [product, dispatch, productId, successUpdate, navigate]);
     const submitHandler = (e) => {
         e.preventDefault();
-        // TODO: Acd
-    }
+        dispatch(updateProduct({ _id: productId, name, price, image, brand, countInStock, description, category }));
+    };
     return (
         <div>
             <form className='form' onSubmit={submitHandler}>
                 <div>
                     <h1>Edit Product {productId}</h1>
                 </div>
+                {loadingUpdate && <LoadingBox></LoadingBox>}
+                {errorUpdate && <MessageBox variant="danger">{errorUpdate}</MessageBox>}
                 {
                     loading
                         ? <LoadingBox></LoadingBox>

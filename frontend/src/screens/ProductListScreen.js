@@ -49,8 +49,8 @@ export default function ProductListScreen() {
                                     <th>PRICE</th>
                                     <th>CATEGORY</th>
                                     <th>BRAND</th>
-                                    <th>CreatedAt</th>
-                                    <th>UpdatedAt</th>
+                                    {/* <th>CreatedAt</th>
+                                    <th>UpdatedAt</th> */}
                                     <th>ACTIONS</th>
                                 </tr>
                             </thead>
@@ -62,8 +62,8 @@ export default function ProductListScreen() {
                                         <td>{product.price.toFixed(2)} <strong>INR</strong></td>
                                         <td>{product.category}</td>
                                         <td>{product.brand}</td>
-                                        <td>{product.createdAt.substring(0, 10)}</td>
-                                        <td>{product.updatedAt.substring(0, 10)}</td>
+                                        {/* <td>{product.createdAt.substring(0, 10)}</td>
+                                        <td>{product.updatedAt.substring(0, 10)}</td> */}
                                         <td>
                                             <button
                                                 type='button'
