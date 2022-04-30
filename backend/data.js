@@ -72,6 +72,17 @@ const data = {
             numReviews: 15,
             description: 'best qulity',
         },
+        {
+            name: 'Chaddi',
+            category: 'Men',
+            image: '/images/product5.jpeg',
+            price: 1560,
+            countInStock: 5,
+            brand: 'Dashu',
+            rating: 5,
+            numReviews: 15,
+            description: 'best qulity',
+        },
     ],
 };
 
