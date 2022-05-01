@@ -14,25 +14,25 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/AmazonShop');
+mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/AmazonShop');
 
 // const URI = "mongodb://127.0.0.1:27017/AmazonShop"
 
-const connectDB = async () => {
-    try {
-        const connection = await mongoose.connect(
-            process.env.MONGODB_URL || "mongodb://127.0.0.1:27017/AmazonShop",
-            {
+// const connectDB = async () => {
+//     try {
+//         const connection = await mongoose.connect(
+//             process.env.MONGODB_URL || "mongodb://127.0.0.1:27017/AmazonShop",
+//             {
 
-                useNewUrlParser: true,
-            }
-        )
-        console.log(`MongoDB connected: ${connection.connection.host}`);
-    } catch (error) {
-        console.log(`MongoDB error when connecting: ${error}`);
-    }
-}
-connectDB()
+//                 useNewUrlParser: true,
+//             }
+//         )
+//         console.log(`MongoDB connected: ${connection.connection.host}`);
+//     } catch (error) {
+//         console.log(`MongoDB error when connecting: ${error}`);
+//     }
+// }
+// connectDB()
 
 
 app.use('/api/uploads', uploadRouter);
