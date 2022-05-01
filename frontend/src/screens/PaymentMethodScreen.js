@@ -12,10 +12,12 @@ export default function PaymentMethodScreen() {
         navigate('/shipping');
     }
     const [paymentMethod, setPaymentMethod] = useState('PayPal');
+    const [paymentCaseMethod, setPaymentCaseMethod] = useState('CaseonDelivery');
+    const [paymentStripeMethod, setPaymentStripeMethod] = useState('Stripe');
     const dispatch = useDispatch();
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch(savePaymentMethod(paymentMethod));
+        dispatch(savePaymentMethod(paymentMethod,paymentCaseMethod,paymentStripeMethod));        
         navigate('/placeorder');
     }
     return (
@@ -47,7 +49,7 @@ export default function PaymentMethodScreen() {
                             value='Stripe'
                             name='paymentMethod'
                             required
-                            onChange={(e) => setPaymentMethod(e.target.value)}>
+                            onChange={(e) => setPaymentStripeMethod(e.target.value)}>
                         </input>
                         <label htmlFor='stripe'>Stripe</label>
                     </div>
@@ -60,7 +62,7 @@ export default function PaymentMethodScreen() {
                             value='CaseonDelivery'
                             name='paymentMethod'
                             required
-                            onChange={(e) => setPaymentMethod(e.target.value)}>
+                            onChange={(e) => setPaymentCaseMethod(e.target.value)}>
                         </input>
                         <label htmlFor='caseondelivery'>Case on Delivery</label>
                     </div>
