@@ -28,7 +28,7 @@ export default function OrderScreen() {
             const { data } = await Axios.get('/api/config/paypal');
             const script = document.createElement('script');
             script.type = "text/javascript";
-            script.src = `https://www.paypal.com/sdk/js?currency=INR&client-id=${data}`;
+            script.src = `https://www.paypal.com/sdk/js?currency=USD&client-id=${data}`;
             script.async = true;
             script.onload = () => {
                 setSdkReady(true);
@@ -118,7 +118,7 @@ export default function OrderScreen() {
                                                                 <Link to={`/products/${item.product}`}>{item.name}</Link>
                                                             </div>
 
-                                                            <div>{item.qty} x INR {item.price} = INR {item.qty * item.price}</div>
+                                                            <div>{item.qty} x $ {item.price} = $ {item.qty * item.price}</div>
                                                         </div>
                                                     </li>
                                                 ))
@@ -137,26 +137,26 @@ export default function OrderScreen() {
                                     <li>
                                         <div className='row'>
                                             <div>Items</div>
-                                            <div>INR {order.itemsPrice.toFixed(2)}</div>
+                                            <div>$ {order.itemsPrice.toFixed(2)}</div>
                                         </div>
                                     </li>
                                     <li>
                                         <div className='row'>
                                             <div>Shipping</div>
-                                            <div>INR {order.shippingPrice.toFixed(2)}</div>
+                                            <div>$ {order.shippingPrice.toFixed(2)}</div>
                                         </div>
                                     </li>
                                     <li>
                                         <div className='row'>
                                             <div>Tax</div>
-                                            <div>INR {order.taxPrice.toFixed(2)}</div>
+                                            <div>$ {order.taxPrice.toFixed(2)}</div>
                                         </div>
                                     </li>
                                     <li>
                                         <div className='row'>
                                             <div><strong>Order Total</strong></div>
                                             <div>
-                                                <strong>INR {order.totalPrice.toFixed(2)}</strong>
+                                                <strong>$ {order.totalPrice.toFixed(2)}</strong>
                                             </div>
                                         </div>
                                     </li>
@@ -171,7 +171,7 @@ export default function OrderScreen() {
                                                             {loadingPay && <LoadingBox></LoadingBox>}
                                                             <PayPalButton
                                                                 amount={order.totalPrice}
-                                                                currency="INR"
+                                                                currency="USD"
                                                                 onSuccess={successPaymentHandler}>
                                                             </PayPalButton>
                                                         </>
