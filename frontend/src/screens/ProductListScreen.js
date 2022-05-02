@@ -44,6 +44,7 @@ export default function ProductListScreen() {
             </div>
             {loadingDelete && <LoadingBox></LoadingBox>}
             {errorDelete && <MessageBox variant="danger">{errorDelete}</MessageBox>}
+            {successDelete && <MessageBox variant="success">Product Deleted Successfully</MessageBox>}
             {loadingCreate && <LoadingBox></LoadingBox>}
             {errorCreate && <MessageBox variant="danger">{errorCreate}</MessageBox>}
             {

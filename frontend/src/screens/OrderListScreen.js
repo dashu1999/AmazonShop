@@ -29,6 +29,7 @@ export default function OrderListScreen() {
                 <h1>Orders</h1>
                 {loadingDelete && <LoadingBox></LoadingBox>}
                 {errorDelete && <MessageBox variant="danger">{errorDelete}</MessageBox>}
+                {successDelete && <MessageBox variant="success">Orders Deleted Successfully</MessageBox>}
                 {loading ? (
                     <LoadingBox></LoadingBox>
                 ) : error ? (

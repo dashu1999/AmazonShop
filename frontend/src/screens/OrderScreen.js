@@ -28,7 +28,7 @@ export default function OrderScreen() {
             const { data } = await Axios.get('/api/config/paypal');
             const script = document.createElement('script');
             script.type = "text/javascript";
-            script.src = `https://www.paypal.com/sdk/js?currency=USD&client-id=${data}`;
+            script.src = `https://www.paypal.com/sdk/js?client-id=${data}`;
             script.async = true;
             script.onload = () => {
                 setSdkReady(true);
@@ -171,7 +171,6 @@ export default function OrderScreen() {
                                                             {loadingPay && <LoadingBox></LoadingBox>}
                                                             <PayPalButton
                                                                 amount={order.totalPrice}
-                                                                currency="USD"
                                                                 onSuccess={successPaymentHandler}>
                                                             </PayPalButton>
                                                         </>
