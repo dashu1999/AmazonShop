@@ -171,6 +171,7 @@ export default function OrderScreen() {
                                                             {loadingPay && <LoadingBox></LoadingBox>}
                                                             <PayPalButton
                                                                 amount={order.totalPrice}
+                                                                currency="EUR"
                                                                 onSuccess={successPaymentHandler}>
                                                             </PayPalButton>
                                                         </>
