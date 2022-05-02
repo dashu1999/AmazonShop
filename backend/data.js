@@ -51,8 +51,8 @@ const data = {
             description: 'high normal qulity',
         },
         {
-            name: 'T-Shirt',
-            category: 'Shirt',
+            name: 'T-Shirt(Small)',
+            category: 'Men',
             image: '/images/product4.jpg',
             price: 520,
             countInStock: 15,
@@ -73,7 +73,7 @@ const data = {
             description: 'best qulity',
         },
         {
-            name: 'Chaddi',
+            name: 'Chaddi(small)',
             category: 'Men',
             image: '/images/product5.jpeg',
             price: 1560,
