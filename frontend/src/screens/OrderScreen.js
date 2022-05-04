@@ -11,6 +11,7 @@ import { ORDER_DELIVER_RESET, ORDER_PAY_RESET } from '../constants/orderConstant
 
 export default function OrderScreen() {
     const params = useParams();
+    
     const [sdkReady, setSdkReady] = useState(false);
     const { id: orderId } = params;
     const orderDetails = useSelector((state) => state.orderDetails);
