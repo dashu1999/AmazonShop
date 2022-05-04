@@ -8,13 +8,30 @@ const data = {
             email: "dashu@gmail.com",
             password: bcrypt.hashSync('1234', 8),
             isAdmin: true,
+            isSeller: true,
         },
         {
             name: "John",
-            email: "user@gmail.com",
+            email: "john@gmail.com",
             password: bcrypt.hashSync('1234', 8),
             isAdmin: false,
+            isSeller: true,
         },
+        {
+            name: "User",
+            email: "user@gmail.com",
+            password: bcrypt.hashSync('1234', 8),
+            isAdmin: true,
+            isSeller: false,
+        },
+        {
+            name: "User2",
+            email: "user2@gmail.com",
+            password: bcrypt.hashSync('1234', 8),
+            isAdmin: false,
+            isSeller: false,
+        },
+
     ],
     products: [
         {
@@ -30,7 +47,7 @@ const data = {
         },
         {
             name: 'Pants',
-            category: 'Men',
+            category: 'Men',            
             image: '/images/product2.jpeg',
             price: 50,
             countInStock: 10,

@@ -9,7 +9,6 @@ import Rating from '../components/Rating';
 
 
 export default function ProductScreen(props) {
-
     const dispatch = useDispatch();
     const params = useParams();
     const { id: productId } = params;
@@ -36,17 +35,18 @@ export default function ProductScreen(props) {
                     ? (<MessageBox variant="danger">{error} </MessageBox>
                     )
                     : (
-                        <div>
+                        <div className='p-1'>
                             <Link to='/'>Back to Home</Link>
-                            <div className='row top'>
-                                <div className='col-2'>
+                            <div className='row top p-1 card card-body'>
+                                <div className='col-2 card card-body'>
                                     <img className='large' src={product.image} alt={product.name}></img>
                                 </div>
-                                <div className='col-1'>
+                                <div className='col-1 p-1 card card-body'>
                                     <ul>
-                                        <li>
+                                        <li >
                                             <h1>{product.name}</h1>
                                         </li>
+                                        <hr></hr>
                                         <li>
                                             <Rating rating={product.rating} numReviews={product.numReviews}></Rating>
                                         </li>
@@ -62,6 +62,17 @@ export default function ProductScreen(props) {
                                 <div className='col-1'>
                                     <div className='card card-body'>
                                         <ul>
+                                            <li>
+                                                <strong>Seller{' '}</strong>
+                                                <h2>
+                                                    <Link to={`/seller/${product.seller._id}`}>{product.seller.seller.name}</Link>
+                                                </h2>
+                                                <Rating
+                                                    rating={product.seller.seller.rating}
+                                                    numReviews={product.seller.seller.numReviews}>
+                                                </Rating>
+                                            </li>
+                                            <hr></hr>
                                             <li>
                                                 <div className='row'>
                                                     <div>Price</div>
