@@ -22,6 +22,8 @@ import UserListScreen from './screens/UserListScreen';
 import UserEditScreen from './screens/UserEditScreen';
 import SellerRoute from './components/SellerRoute';
 import SellerScreen from './screens/SellerScreen';
+import SearchBox from './components/SearchBox';
+import SearchScreen from './screens/SearchScreen';
 
 function App() {
     const cart = useSelector(state => state.cart);
@@ -38,6 +40,11 @@ function App() {
                 <header className="row">
                     <div>
                         <Link className="title" to="/">Amazon</Link>
+                    </div>
+                    <div>
+                        <div>
+                            <SearchBox />
+                        </div>
                     </div>
                     <div>
                         <Link to="/cart">Cart
@@ -131,6 +138,14 @@ function App() {
                         <Route path="/placeorder" element={<PlaceOrderScreen />}></Route>
                         <Route path="/order/:id" element={<OrderScreen />}></Route>
                         <Route path="/orderhistory" element={<OrderHistoryScreen />}></Route>
+                        <Route path="/search/name" element={<SearchScreen />} exact></Route>
+                        <Route
+                            path="/search/name/:name"
+                            element={<SearchScreen />}
+                            exact
+                        ></Route>
+
+
                         <Route path="/profile" element={<PrivateRoute><ProfileScreen /></PrivateRoute>}></Route>
                         <Route path="/productlist" element={<AdminRoute><ProductListScreen /></AdminRoute>} exact></Route>
                         <Route path="/orderlist" element={<AdminRoute><OrderListScreen /></AdminRoute>} exact></Route>
