@@ -73,7 +73,7 @@ export default function PlaceOrderScreen() {
                                                         </img>
                                                     </div>
                                                     <div className='min-30'>
-                                                        <Link to={`/products/${item.product}`}>{item.name}</Link>
+                                                        <Link to={`/product/${item.product}`}>{item.name}</Link>
                                                     </div>
 
                                                     <div>{item.qty} x $ {item.price} = $ {item.qty * item.price}</div>
