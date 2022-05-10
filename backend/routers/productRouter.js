@@ -1,6 +1,7 @@
 import express from "express";
 import expressAsyncHandler from "express-async-handler";
 import Product from "../models/productModel.js";
+import User from "../models/userModel.js";
 import data from "../data.js";
 import { isAdmin, isAuth, isSellerOrAdmin } from "../utils.js";
 
@@ -45,8 +46,16 @@ productRouter.get('/', expressAsyncHandler(async (req, res) => {
 
 productRouter.get('/seed', expressAsyncHandler(async (req, res) => {
   // await Product.remove({});
-  const createdProducts = await Product.insertMany(data.products);
-  res.send({ createdProducts });
+  const seller = await User.findOne({ isSeller: true });
+  if (seller) {
+    const products = data.products.map((product) => ({
+      ...product, seller: seller._id,
+    }));
+    const createdProducts = await Product.insertMany(products);
+    res.send({ createdProducts });
+  } else {
+    res.status(500).send({ message: 'No Seller found' });
+  }
 })
 );
 

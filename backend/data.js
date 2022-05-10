@@ -9,6 +9,13 @@ const data = {
             password: bcrypt.hashSync('1234', 8),
             isAdmin: true,
             isSeller: true,
+            seller: {
+                name: 'Dashu',
+                logo: '/images/S1.jpeg',
+                description: 'Best',
+                rating: 4.5,
+                numReviews: 120,
+            },
         },
         {
             name: "John",
@@ -16,6 +23,13 @@ const data = {
             password: bcrypt.hashSync('1234', 8),
             isAdmin: false,
             isSeller: true,
+            seller: {
+                name: 'John',
+                logo: '/images/S2.jpeg',
+                description: 'Best Seller',
+                rating: 5,
+                numReviews: 320,
+            },
         },
         {
             name: "User",
@@ -47,7 +61,7 @@ const data = {
         },
         {
             name: 'Pants',
-            category: 'Men',            
+            category: 'Men',
             image: '/images/product2.jpeg',
             price: 50,
             countInStock: 10,
