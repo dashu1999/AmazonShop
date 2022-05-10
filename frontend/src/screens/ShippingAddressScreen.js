@@ -6,7 +6,7 @@ import CheckOutSteps from '../components/CheckOutSteps'
 
 export default function ShippingAddressScreen(props) {
     const navigate = useNavigate();
-    const userSignin = useSelector((state) => state.userSignin);    
+    const userSignin = useSelector((state) => state.userSignin);
 
     const { userInfo } = userSignin;
 
@@ -58,19 +58,19 @@ export default function ShippingAddressScreen(props) {
             navigate('/payment');
         }
     };
-    const chooseOnMap = () => {
-        dispatch(saveShippingAddress({
-            fullName,
-            address,
-            city,
-            postalCode,
-            country,
-            phone,
-            lat,
-            lng,
-        }));
-        navigate('/map');
-    };
+    // const chooseOnMap = () => {
+    //     dispatch(saveShippingAddress({
+    //         fullName,
+    //         address,
+    //         city,
+    //         postalCode,
+    //         country,
+    //         phone,
+    //         lat,
+    //         lng,
+    //     }));
+    //     navigate('/map');
+    // };
     return (
         <div>
             <CheckOutSteps step1 step2></CheckOutSteps>
@@ -149,12 +149,12 @@ export default function ShippingAddressScreen(props) {
                         required>
                     </input>
                 </div>
-                <div>
+                {/* <div>
                     <label htmlFor="chooseOnMap">Location</label>
                     <button type="button" onClick={chooseOnMap}>
                         Choose On Map
                     </button>
-                </div>
+                </div> */}
                 <div>
                     <label />
                     <button className='primary' type='submit'>
