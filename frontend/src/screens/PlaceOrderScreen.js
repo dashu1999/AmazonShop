@@ -24,7 +24,7 @@ export default function PlaceOrderScreen() {
     const dispatch = useDispatch();
     const placeOrderHandler = () => {
         dispatch(createOrder({ ...cart, orderItems: cart.cartItems }));
-        
+
     };
     useEffect(() => {
         if (success) {

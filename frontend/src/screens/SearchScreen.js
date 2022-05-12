@@ -10,15 +10,24 @@ import { prices, ratings } from '../utils';
 
 export default function SearchScreen() {
     const navigate = useNavigate();
-    const { name = 'all', category = 'all', min = 0, max = 0, rating = 0,order='newest' } = useParams();
+    const {
+        name = 'all',
+        category = 'all',
+        min = 0,
+        max = 0,
+        rating = 0,
+        order = 'newest',
+        pageNumber = 1,
+    } = useParams();
     const productList = useSelector(state => state.productList);
-    const { loading, error, products } = productList;
+    const { loading, error, products, page, pages } = productList;
 
     const productCategoryList = useSelector(state => state.productCategoryList);
     const { loading: loadingCategories, error: errorCategories, categories } = productCategoryList;
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(listProducts({
+            pageNumber,
             name: name !== 'all' ? name : '',
             category: category !== 'all' ? category : '',
             min,
@@ -26,16 +35,17 @@ export default function SearchScreen() {
             rating,
             order,
         }));
-    }, [dispatch, name, min, max, rating,order, category]);
+    }, [dispatch, name, min, max, rating, order, category, pageNumber]);
 
     const getFilterUrl = (filter) => {
+        const filterPage = filter.page || pageNumber;
         const filterCategory = filter.category || category;
         const filterName = filter.name || name;
         const filterRating = filter.rating || rating;
         const sortOrder = filter.order || order;
         const filterMin = filter.min ? filter.min : filter.min === 0 ? 0 : min;
         const filterMax = filter.max ? filter.max : filter.max === 0 ? 0 : max;
-        return `/search/category/${filterCategory}/name/${filterName}/min/${filterMin}/max/${filterMax}/rating/${filterRating}/order/${sortOrder}`;
+        return `/search/category/${filterCategory}/name/${filterName}/min/${filterMin}/max/${filterMax}/rating/${filterRating}/order/${sortOrder}/pageNumber/${filterPage}`;
     }
     return (
         <div>
@@ -61,7 +71,7 @@ export default function SearchScreen() {
                         <option value="newest">Newest Arrivals</option>
                         <option value="lowest">Price: Low to High</option>
                         <option value="highest">Price: High to Low</option>
-                        <option value="toprated">Top Reviews</option>                        
+                        <option value="toprated">Top Reviews</option>
                     </select>
                 </div>
             </div>
@@ -144,6 +154,13 @@ export default function SearchScreen() {
                                         {products.map((product) => (
                                             <Product key={product._id} product={product}></Product>
                                         ))}
+                                    </div>
+                                    <div className='row center pagination'>
+                                        {
+                                            [...Array(pages).keys()].map(x => (
+                                                <Link className={x+1 === page?'active':''} key={x + 1} to={getFilterUrl({ page: x + 1 })}>{x + 1}</Link>
+                                            ))
+                                        }
                                     </div>
                                 </>
                     }

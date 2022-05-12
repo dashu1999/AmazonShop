@@ -1,22 +1,27 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { deleteUser, listUsers } from '../actions/userActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { USER_DETAILS_RESET } from '../constants/userConstants';
 
 export default function UserListScreen() {
+    const { pageNumber = 1 } = useParams();
     const navigate = useNavigate();
+
     const userList = useSelector((state) => state.userList);
-    const { loading, error, users } = userList;
+    const { loading, error, users, page, pages } = userList;
+
     const userDelete = useSelector((state) => state.userDelete);
     const { loading: loadingDelete, error: errorDelete, success: successDelete } = userDelete;
+
     const dispatch = useDispatch();
+
     useEffect(() => {
-        dispatch(listUsers());
+        dispatch(listUsers(pageNumber));
         dispatch({ type: USER_DETAILS_RESET });
-    }, [dispatch, successDelete]);
+    }, [dispatch, successDelete, pageNumber]);
     const deleteHandler = (user) => {
         if (window.confirm('Are you sure?')) {
             dispatch(deleteUser(user._id));
@@ -33,7 +38,7 @@ export default function UserListScreen() {
                     ? (<LoadingBox></LoadingBox>)
                     : error ? (<MessageBox variant="danger">{error} </MessageBox>)
                         :
-                        (
+                        <>
                             <table className='table'>
                                 <thead>
                                     <tr>
@@ -55,7 +60,7 @@ export default function UserListScreen() {
                                                 <td>{user.isSeller ? 'YES' : 'NO'}</td>
                                                 <td>{user.isAdmin ? 'YES' : 'NO'}</td>
                                                 <td>
-                                                    <button type='button' className='small'onClick={()=> navigate(`/user/${user._id}/edit`)}>Edit</button>
+                                                    <button type='button' className='small' onClick={() => navigate(`/user/${user._id}/edit`)}>Edit</button>
                                                     <button type='button' className='small' onClick={() => deleteHandler(user)}>Delete</button>
                                                 </td>
 
@@ -64,7 +69,14 @@ export default function UserListScreen() {
                                     }
                                 </tbody>
                             </table>
-                        )
+                            <div className='row center pagination'>
+                                {
+                                    [...Array(pages).keys()].map(x => (
+                                        <Link className={x + 1 === page ? 'active' : ''} key={x + 1} to={`/userlist/pageNumber/${x + 1}`}>{x + 1}</Link>
+                                    ))
+                                }
+                            </div>                            
+                        </>
             }
         </div>
     )

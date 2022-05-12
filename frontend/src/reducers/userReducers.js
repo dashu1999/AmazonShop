@@ -62,7 +62,12 @@ export const userListReducer = (state = { loading: true }, action) => {
         case USER_LIST_REQUEST:
             return { loading: true };
         case USER_LIST_SUCCESS:
-            return { loading: false, users: action.payload };
+            return {
+                loading: false,
+                users: action.payload.users,
+                pages: action.payload.pages,
+                page: action.payload.page
+            };
         case USER_LIST_FAIL:
             return { loading: false, error: action.payload };
         default: return state;
@@ -111,9 +116,9 @@ export const userTopSellerListReducer = (state = { loading: true }, action) => {
 
 export const userAddressMapReducer = (state = {}, action) => {
     switch (action.type) {
-      case USER_ADDRESS_MAP_CONFIRM:
-        return { address: action.payload };
-      default:
-        return state;
+        case USER_ADDRESS_MAP_CONFIRM:
+            return { address: action.payload };
+        default:
+            return state;
     }
-  };
+};
