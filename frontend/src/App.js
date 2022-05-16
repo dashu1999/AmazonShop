@@ -28,6 +28,7 @@ import { listProductCategories } from './actions/productActions';
 import LoadingBox from './components/LoadingBox';
 import MessageBox from './components/MessageBox';
 import MapScreen from './screens/MapScreen';
+import DashboardScreen from './screens/DashboardScreen';
 
 function App() {
     const cart = useSelector(state => state.cart);
@@ -210,6 +211,7 @@ function App() {
                         <Route path="/userlist" element={<AdminRoute><UserListScreen /></AdminRoute>}></Route>
                         <Route path="/userlist/pageNumber/:pageNumber" element={<AdminRoute><UserListScreen /></AdminRoute>}></Route>
                         <Route path="/user/:id/edit" element={<AdminRoute><UserEditScreen /></AdminRoute>}></Route>
+                        <Route path="/dashboard" element={<AdminRoute><DashboardScreen /></AdminRoute>}></Route>
                         <Route path="/productlist/seller" element={<SellerRoute><ProductListScreen /></SellerRoute>}></Route>
                         <Route path="/productlist/seller/pageNumber/:pageNumber" element={<SellerRoute><ProductListScreen /></SellerRoute>}></Route>
                         <Route path="/orderlist/seller" element={<SellerRoute><OrderListScreen /></SellerRoute>}></Route>
