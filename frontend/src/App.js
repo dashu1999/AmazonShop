@@ -29,6 +29,7 @@ import LoadingBox from './components/LoadingBox';
 import MessageBox from './components/MessageBox';
 import MapScreen from './screens/MapScreen';
 import DashboardScreen from './screens/DashboardScreen';
+import SellerDashboard from './screens/SellerDashboard';
 
 function App() {
     const cart = useSelector(state => state.cart);
@@ -102,6 +103,9 @@ function App() {
                                         <i className='fa fa-caret-down'></i>
                                     </Link>
                                     <ul className='dropdown-content'>
+                                        <li>
+                                            <Link to="/seller/dashboard">Dashboard</Link>
+                                        </li>
                                         <li>
                                             <Link to="/productlist/seller">Products</Link>
                                         </li>
@@ -216,6 +220,7 @@ function App() {
                         <Route path="/productlist/seller/pageNumber/:pageNumber" element={<SellerRoute><ProductListScreen /></SellerRoute>}></Route>
                         <Route path="/orderlist/seller" element={<SellerRoute><OrderListScreen /></SellerRoute>}></Route>
                         <Route path="/orderlist/seller/pageNumber/:pageNumber" element={<SellerRoute><OrderListScreen /></SellerRoute>}></Route>
+                        <Route path="/seller/dashboard" element={<SellerRoute><SellerDashboard /></SellerRoute>}></Route>
                         <Route path="/" element={<HomeScreen />} exact></Route>
                         <Route path="/pageNumber/:pageNumber" element={<HomeScreen />} exact></Route>
                     </Routes>

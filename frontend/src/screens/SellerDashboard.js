@@ -1,17 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import Chart from 'react-google-charts';
 
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
-import { summaryOrder } from '../actions/orderActions';
+import { sellerSummaryOrder } from '../actions/orderActions';
 
-export default function DashboardScreen() {
-    const orderSummary = useSelector((state) => state.orderSummary);
-    const { loading, summary, error } = orderSummary;
+export default function SellerDashboard() {
+    const orderSellerSummary = useSelector((state) => state.orderSellerSummary);
+    const { loading, summary, error } = orderSellerSummary;
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(summaryOrder());
+        dispatch(sellerSummaryOrder());
     }, [dispatch]);
     return (
         <div>
