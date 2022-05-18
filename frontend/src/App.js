@@ -30,6 +30,8 @@ import MessageBox from './components/MessageBox';
 import MapScreen from './screens/MapScreen';
 import DashboardScreen from './screens/DashboardScreen';
 import SellerDashboard from './screens/SellerDashboard';
+import SupportScreen from './screens/SupportScreen';
+import ChatBox from './components/ChatBox';
 
 function App() {
     const cart = useSelector(state => state.cart);
@@ -136,6 +138,9 @@ function App() {
                                         <li>
                                             <Link to="/userlist">Users</Link>
                                         </li>
+                                        <li>
+                                            <Link to="/support">Support</Link>
+                                        </li>
                                     </ul>
                                 </div>
                             </>
@@ -208,6 +213,7 @@ function App() {
 
                         <Route path="/map" element={<PrivateRoute><MapScreen /></PrivateRoute>}></Route>
                         <Route path="/profile" element={<PrivateRoute><ProfileScreen /></PrivateRoute>}></Route>
+
                         <Route path="/productlist" element={<AdminRoute><ProductListScreen /></AdminRoute>} exact></Route>
                         <Route path="/productlist/pageNumber/:pageNumber" element={<AdminRoute><ProductListScreen /></AdminRoute>} exact></Route>
                         <Route path="/orderlist" element={<AdminRoute><OrderListScreen /></AdminRoute>} exact></Route>
@@ -216,16 +222,22 @@ function App() {
                         <Route path="/userlist/pageNumber/:pageNumber" element={<AdminRoute><UserListScreen /></AdminRoute>}></Route>
                         <Route path="/user/:id/edit" element={<AdminRoute><UserEditScreen /></AdminRoute>}></Route>
                         <Route path="/dashboard" element={<AdminRoute><DashboardScreen /></AdminRoute>}></Route>
+                        <Route path="/support" element={<AdminRoute><SupportScreen /></AdminRoute>}></Route>
+
                         <Route path="/productlist/seller" element={<SellerRoute><ProductListScreen /></SellerRoute>}></Route>
                         <Route path="/productlist/seller/pageNumber/:pageNumber" element={<SellerRoute><ProductListScreen /></SellerRoute>}></Route>
                         <Route path="/orderlist/seller" element={<SellerRoute><OrderListScreen /></SellerRoute>}></Route>
                         <Route path="/orderlist/seller/pageNumber/:pageNumber" element={<SellerRoute><OrderListScreen /></SellerRoute>}></Route>
                         <Route path="/seller/dashboard" element={<SellerRoute><SellerDashboard /></SellerRoute>}></Route>
+
                         <Route path="/" element={<HomeScreen />} exact></Route>
                         <Route path="/pageNumber/:pageNumber" element={<HomeScreen />} exact></Route>
                     </Routes>
                 </main>
-                <footer className="row center">All right reserved</footer>
+                <footer className="row center">
+                    {userInfo && !userInfo.isAdmin && <ChatBox userInfo={userInfo} />}
+                    <div>All right reserved</div>{' '}
+                </footer>
             </div>
         </BrowserRouter>
     );
